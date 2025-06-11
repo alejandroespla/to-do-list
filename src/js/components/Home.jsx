@@ -36,10 +36,12 @@ const Home = () => {
 
       </form>
 
+       <h2 className="mt-5 text-info">Your List</h2>
+
        {list.map((item, index) => {
           return (
-            <article key={index} className="border">
-              <span className="text-start form-control border-0">{item.listItem}</span>
+            <article key={index} className="border text-start px-3 py-2 bg-light">
+              <span className="  border-0">{item.listItem}</span>
             </article>
                         )
                     })
