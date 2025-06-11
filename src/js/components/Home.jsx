@@ -19,7 +19,7 @@ const Home = () => {
 
 	return ( 
 
-		<div className="container m-5 text-center " >
+		<div className="container text-center m-auto" >
 
       <h1 className="m-5">To Do List</h1>
 
