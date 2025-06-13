@@ -5,26 +5,25 @@ import { useState } from "react"
 //create your first component
 const Home = () => {
 
-    const [inputToDo, setInputToDo] = useState("");
+    const [inputToDo, setInputToDo] = useState(""); //useState para agregar tareas
     
-    const [list, setList] = useState([]);
+    const [list, setList] = useState([]);           //useState para modificar la lista
 
-    function submitToDo (e){
+    function submitToDo (e){                        //funcion para agregar tareas a la lista
       e.preventDefault();
       if (inputToDo.trim() === "") //esto hace que evitemos mandar una tarea vacia
       return                       // hay que añadir return 
-        let newItem = {listItem: inputToDo};
-        setList(prev => [...prev, newItem]);
-        setInputToDo("");
-    }
 
+        let newItem = {listItem: inputToDo}; //como va a ser el objeto que se añade al array
+
+        setList(prev => [...prev, newItem]); //actualiza el array la lista desde su estado anterior
+        setInputToDo(""); // devuelve el nuevo estado con la nueva tarea
+    }
 
     function deleteToDo(indexToDelete) {
     const updatedList = list.filter((_, index) => index !== indexToDelete);
     setList(updatedList);
   }
-      
-
 
 	return ( 
 
@@ -47,7 +46,7 @@ const Home = () => {
       
        <h2 className="m-5 text-info">Your List</h2>
 
-       {list.length === 0 ? (
+       {list.length === 0 ? (                           //condicional si el numero de elementos dentro del array es 0
   <p className="p-5 notask">No task defined</p>
 ) : (
   list.map((item, index) => (
@@ -61,7 +60,6 @@ const Home = () => {
         xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" className="bi bi-x delete-icon" viewBox="0 0 16 16">
         <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
         </svg>    
-      
       </div>
     </div>
   ))
