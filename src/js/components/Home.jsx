@@ -5,17 +5,25 @@ import { useState } from "react"
 //create your first component
 const Home = () => {
 
-    const [inputTodo, setInputTodo] = useState("");
+    const [inputToDo, setInputToDo] = useState("");
     
     const [list, setList] = useState([]);
 
-    function submitTodo (e){
+    function submitToDo (e){
       e.preventDefault();
       
-      let newItem = {listItem: inputTodo};
+      let newItem = {listItem: inputToDo};
       setList(prev => [...prev, newItem]);
-      setInputTodo("");
+      setInputToDo("");
     }
+
+
+    function deleteToDo(indexToDelete) {
+    const updatedList = list.filter((_, index) => index !== indexToDelete);
+    setList(updatedList);
+  }
+      
+
 
 	return ( 
 
@@ -25,12 +33,12 @@ const Home = () => {
 
 		  <form 
        className=" border"
-       onSubmit={submitTodo} >
+       onSubmit={submitToDo} >
         
         <div className="">
           <input 
-          onChange={(e) => setInputTodo(e.target.value)}
-          value={inputTodo}
+          onChange={(e) => setInputToDo(e.target.value)}
+          value={inputToDo}
           type="text" className="form-control  border-0 " id="EnterToDo" placeholder="Add a new Task"/>
         </div>
 
@@ -41,7 +49,10 @@ const Home = () => {
        {list.map((item, index) => {
           return (
             <article key={index} className="border text-start px-3 py-2 bg-light">
-              <span className="  border-0">{item.listItem}</span>
+              <span className="  border-0" width="100%">{item.listItem}</span>
+              <img 
+              onClick={() => deleteToDo(index)}
+              className="float-end" width="24PX"  src="../src/img/x.svg" alt="" />
             </article>
                         )
                     })
