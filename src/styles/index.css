@@ -1,11 +1,35 @@
-/* 
+.notask{
+  color: #a4a4a4;
+  background-color: #fff6f3;
+}
 
-    You can write your own styles here...
-    
-    
-    ...Or you can use the import command to include 
-    other sylesheets into your bunde as well, e.j:
-    
-    import 'relative/path/to/stylesheet.scss';
+.toDo-item {
+    width: 100%;
+    background-color: #f9f9f9;
+  transition: background-color 0.3s;
+}
 
-*/
+.toDo-item:hover {
+  background-color: #e6e6e6;
+}
+
+.task {
+    width: 100%;
+}
+
+.delete-icon {
+  width: 32px;
+  opacity: 0;
+  cursor: pointer;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.delete-icon:hover {
+  background-color: #cfcfcf;
+  border-radius: 50%;
+  padding: 2px;
+}
+
+.toDo-item:hover .delete-icon {
+  opacity: 1;
+}

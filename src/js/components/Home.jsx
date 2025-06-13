@@ -11,10 +11,11 @@ const Home = () => {
 
     function submitToDo (e){
       e.preventDefault();
-      
-      let newItem = {listItem: inputToDo};
-      setList(prev => [...prev, newItem]);
-      setInputToDo("");
+      if (inputToDo.trim() === "") //esto hace que evitemos mandar una tarea vacia
+      return                       // hay que añadir return 
+        let newItem = {listItem: inputToDo};
+        setList(prev => [...prev, newItem]);
+        setInputToDo("");
     }
 
 
@@ -43,20 +44,28 @@ const Home = () => {
         </div>
 
       </form>
+      
+       <h2 className="m-5 text-info">Your List</h2>
 
-       <h2 className="mt-5 text-info">Your List</h2>
-
-       {list.map((item, index) => {
-          return (
-            <article key={index} className="border text-start px-3 py-2 bg-light">
-              <span className="  border-0" width="100%">{item.listItem}</span>
-              <img 
-              onClick={() => deleteToDo(index)}
-              className="float-end" width="24PX"  src="../src/img/x.svg" alt="" />
-            </article>
-                        )
-                    })
-                }
+       {list.length === 0 ? (
+  <p className="p-5 notask">No task defined</p>
+) : (
+  list.map((item, index) => (
+    <div key={index} className="d-flex toDo-item text-start px-3 py-2">
+      <div className="task d-flex align-items-center">
+        <span className="border-0">{item.listItem}</span>
+      </div>
+      <div>
+        <img 
+          onClick={() => deleteToDo(index)}
+          className="delete-icon"  
+          src="../src/img/x.svg" 
+          alt="delete" 
+        />
+      </div>
+    </div>
+  ))
+)}
 
         
 
